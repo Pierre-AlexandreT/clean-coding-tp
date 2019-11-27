@@ -126,3 +126,6 @@ ext {
 }
 ``` 
 - Synchronise the project
+
+## 3. Create the end point of the api :  
+- Add a `buildConfigField`
