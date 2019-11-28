@@ -15,10 +15,10 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
+@ObsoleteCoroutinesApi
 @ExperimentalCoroutinesApi
 class CharacterDataSourceTest {
 
-    @ObsoleteCoroutinesApi
     private val testDispatcher = newSingleThreadContext("UI context")
 
     private lateinit var api: CharacterApi
@@ -64,14 +64,12 @@ class CharacterDataSourceTest {
         }
     }
 
-    @ObsoleteCoroutinesApi
     @Before
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
         api = HttpClientManager.instance.createApi()
     }
 
-    @ObsoleteCoroutinesApi
     @After
     fun tearDown() {
         Dispatchers.resetMain()

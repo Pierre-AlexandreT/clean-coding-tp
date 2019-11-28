@@ -61,6 +61,7 @@ ext {
 
     // region Testing
     junit_version = '4.12'
+    arch_testing_version = '2.1.0'
     android_junit = '1.1.1'
     espresso_core_version = '3.2.0'
     // endregion
