@@ -98,6 +98,7 @@ class CharacterApiTest {
             assertEquals(
                 "First Character must be Rick", firstCharacter, data.results.first()
             )
+            println("${this.body()?.results?.count()}")
         }
 
         return@runBlocking

@@ -96,6 +96,7 @@ dependencies {
 
     // region Testing
     testImplementation "junit:junit:$junit_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine_version"
     androidTestImplementation "androidx.test.ext:junit:$android_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
     // endregion
