@@ -1,14 +1,20 @@
 package fr.appsolute.tp.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import fr.appsolute.tp.R
+import fr.appsolute.tp.data.model.Character
+import fr.appsolute.tp.ui.adapter.CharacterAdapter
+import fr.appsolute.tp.ui.widget.holder.OnCharacterClickListener
+import kotlinx.android.synthetic.main.fragment_character_list.view.*
 
-class CharacterListFragment : Fragment() {
+class CharacterListFragment : Fragment(), OnCharacterClickListener {
+
+    private lateinit var characterAdapter: CharacterAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -17,4 +23,13 @@ class CharacterListFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_character_list, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        view.character_list_recycler_view.apply {
+        }
+    }
+
+    override fun invoke(view: View, character: Character) {
+        Toast.makeText(view.context, character.name, Toast.LENGTH_SHORT).show()
+    }
 }

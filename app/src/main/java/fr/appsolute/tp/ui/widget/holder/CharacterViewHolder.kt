@@ -9,9 +9,11 @@ import fr.appsolute.tp.R
 import fr.appsolute.tp.data.model.Character
 import kotlinx.android.synthetic.main.holder_character.view.*
 
+typealias OnCharacterClickListener = (view: View, character: Character) -> Unit
+
 class CharacterViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(model: Character, onClick: (View, Character) -> Unit) {
+    fun bind(model: Character, onClick: OnCharacterClickListener) {
         itemView.apply {
             this.setOnClickListener { onClick(it, model) }
             this.holder_character_full_name.text = model.name

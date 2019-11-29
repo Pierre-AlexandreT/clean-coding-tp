@@ -1,14 +1,14 @@
 package fr.appsolute.tp.ui.adapter
 
-import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import fr.appsolute.tp.data.model.Character
 import fr.appsolute.tp.ui.widget.holder.CharacterViewHolder
+import fr.appsolute.tp.ui.widget.holder.OnCharacterClickListener
 
 class CharacterAdapter(
-    private val onCharacterClickListener: (View, Character) -> Unit
+    private val onCharacterClickListener: OnCharacterClickListener
 ) : PagedListAdapter<Character, CharacterViewHolder>(Companion) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
