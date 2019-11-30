@@ -18,8 +18,7 @@ class CharacterViewHolder private constructor(itemView: View) : RecyclerView.Vie
             this.setOnClickListener { onClick(it, model) }
             this.holder_character_full_name.text = model.name
             this.holder_character_location.text = model.location.name
-            Glide
-                .with(this)
+            Glide.with(this)
                 .load(model.image)
                 .into(this.holder_character_avatar)
         }
