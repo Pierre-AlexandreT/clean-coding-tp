@@ -6,12 +6,12 @@ import fr.appsolute.tp.data.model.Character
 import fr.appsolute.tp.data.networking.HttpClientManager
 import fr.appsolute.tp.data.networking.api.CharacterApi
 import fr.appsolute.tp.data.networking.createApi
-import junit.framework.Assert.assertEquals
-import junit.framework.Assert.assertNull
 import kotlinx.coroutines.*
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Before
 import org.junit.Test
 
