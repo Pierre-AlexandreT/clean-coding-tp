@@ -325,3 +325,4 @@ Thumbs.db
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.gitignore.io/api/git,java,kotlin,android,intellij+all,androidstudio
+!.idea/
