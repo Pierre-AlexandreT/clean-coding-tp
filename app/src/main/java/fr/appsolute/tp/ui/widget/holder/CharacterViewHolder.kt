@@ -9,6 +9,11 @@ import fr.appsolute.tp.R
 import fr.appsolute.tp.data.model.Character
 import kotlinx.android.synthetic.main.holder_character.view.*
 
+/**
+ * SAM (Single Abstract Method) to listen a click.
+ *
+ * This callback contains the view clicked, and the character attached to the view
+ */
 typealias OnCharacterClickListener = (view: View, character: Character) -> Unit
 
 class CharacterViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -25,6 +30,9 @@ class CharacterViewHolder private constructor(itemView: View) : RecyclerView.Vie
     }
 
     companion object {
+        /**
+         * Create a new Instance of [CharacterViewHolder]
+         */
         fun create(parent: ViewGroup): CharacterViewHolder {
             val view = LayoutInflater.from(parent.context).inflate(
                 R.layout.holder_character,

@@ -9,6 +9,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * DataSource use for the paginated api ([CharacterApi.getAllCharacter])
+ */
 class CharacterDataSource private constructor(
     private val api: CharacterApi,
     private val scope: CoroutineScope

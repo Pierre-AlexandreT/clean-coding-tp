@@ -29,7 +29,8 @@ class CharacterListFragment : Fragment(), OnCharacterClickListener {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_character_list, container, false)
@@ -37,6 +38,7 @@ class CharacterListFragment : Fragment(), OnCharacterClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // We need to inject the OnCharacterClickListener in the constructor of the adapter
         characterAdapter = CharacterAdapter(this)
         view.character_list_recycler_view.apply {
             adapter = characterAdapter
@@ -46,6 +48,7 @@ class CharacterListFragment : Fragment(), OnCharacterClickListener {
         }
     }
 
+    // Implementation of OnCharacterClickListener
     override fun invoke(view: View, character: Character) {
         Toast.makeText(view.context, character.name, Toast.LENGTH_SHORT).show()
     }

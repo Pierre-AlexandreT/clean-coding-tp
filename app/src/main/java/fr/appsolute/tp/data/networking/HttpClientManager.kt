@@ -7,8 +7,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
+/**
+ * Implementation of [HttpClientManager]
+ */
 private object HttpClientManagerImpl : HttpClientManager {
 
+    /**
+     * Http Client, Here we just construct a client with a logger to see entire
+     * request and response
+     */
     private val client: OkHttpClient =
         OkHttpClient.Builder()
             .apply {
@@ -27,13 +34,20 @@ private object HttpClientManagerImpl : HttpClientManager {
             .build()
 }
 
-
+/**
+ * Manager use to access to Retrofit resource
+ */
 interface HttpClientManager {
 
+    /**
+     * Instance of Retrofit used to create Api
+     */
     val retrofit: Retrofit
 
     companion object Instance {
-
+        /**
+         * Singleton for the interface
+         */
         val instance: HttpClientManager = HttpClientManagerImpl
 
     }
