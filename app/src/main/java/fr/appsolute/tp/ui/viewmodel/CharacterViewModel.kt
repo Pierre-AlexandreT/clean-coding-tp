@@ -9,6 +9,9 @@ class CharacterViewModel private constructor(
     repository: CharacterRepository
 ) : ViewModel() {
 
+    /**
+     *  Return the paginated list of character from the API
+     */
     val charactersPagedList = repository.getPaginatedList(viewModelScope)
 
     companion object Factory : ViewModelProvider.Factory {
