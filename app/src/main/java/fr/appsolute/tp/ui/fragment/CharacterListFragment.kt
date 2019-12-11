@@ -4,13 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import fr.appsolute.tp.R
 import fr.appsolute.tp.data.model.Character
+import fr.appsolute.tp.ui.activity.MainActivity
 import fr.appsolute.tp.ui.adapter.CharacterAdapter
 import fr.appsolute.tp.ui.viewmodel.CharacterViewModel
 import fr.appsolute.tp.ui.widget.holder.OnCharacterClickListener
@@ -38,6 +40,10 @@ class CharacterListFragment : Fragment(), OnCharacterClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as? MainActivity)?.supportActionBar?.apply {
+            this.setTitle(R.string.app_name)
+            this.setDisplayHomeAsUpEnabled(false)
+        }
         // We need to inject the OnCharacterClickListener in the constructor of the adapter
         characterAdapter = CharacterAdapter(this)
         view.character_list_recycler_view.apply {
@@ -50,6 +56,11 @@ class CharacterListFragment : Fragment(), OnCharacterClickListener {
 
     // Implementation of OnCharacterClickListener
     override fun invoke(view: View, character: Character) {
-        Toast.makeText(view.context, character.name, Toast.LENGTH_SHORT).show()
+        findNavController().navigate(
+            R.id.action_character_list_fragment_to_character_details_fragment,
+            bundleOf(
+                CharacterDetailsFragment.ARG_CHARACTER_ID_KEY to character.id
+            )
+        )
     }
 }

@@ -5,6 +5,11 @@ import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+/**
+ * This class define what is the model Episode
+ *
+ * We keep this structure to create the Room Table ([Entity])
+ */
 @Entity(tableName = "episode")
 data class Episode @JvmOverloads constructor(
     @PrimaryKey(autoGenerate = false)

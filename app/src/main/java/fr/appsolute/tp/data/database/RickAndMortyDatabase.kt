@@ -13,5 +13,5 @@ import fr.appsolute.tp.data.model.Episode
     exportSchema = true
 )
 abstract class RickAndMortyDatabase : RoomDatabase() {
-    abstract   val episodeDao: EpisodeDao
+    abstract val episodeDao: EpisodeDao
 }

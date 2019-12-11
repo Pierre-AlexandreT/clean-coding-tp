@@ -51,6 +51,10 @@ class EpisodeApiTest {
     fun getAllEpisode() = runBlocking {
         val response = api.getAllEpisode(1)
         assertTrue("Response must be a success", response.isSuccessful)
-        assertEquals("First episode must be the reference", episodeReference, response.body()?.results?.first())
+        assertEquals(
+            "First episode must be the reference",
+            episodeReference,
+            response.body()?.results?.first()
+        )
     }
 }

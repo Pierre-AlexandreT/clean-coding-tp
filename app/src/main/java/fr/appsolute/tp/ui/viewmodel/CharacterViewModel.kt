@@ -5,17 +5,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import fr.appsolute.tp.data.model.Character
 import fr.appsolute.tp.data.repository.CharacterRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 open class CharacterViewModel(
-    repository: CharacterRepository
+    private val repository: CharacterRepository
 ) : ViewModel() {
 
     private var _data = mutableListOf<Int>()
 
-    val data :List<Int>
+    val data: List<Int>
         get() = _data
 
     /**
@@ -23,13 +21,12 @@ open class CharacterViewModel(
      */
     val charactersPagedList = repository.getPaginatedList(viewModelScope)
 
-    fun getCharacterDetails(id: Int, onSuccess: (Int) -> Unit) {
+    /**
+     * Call the api to fetch the details of a character from its ID
+     */
+    fun getCharacterById(id: Int, onSuccess: OnSuccess<Character>) {
         viewModelScope.launch {
-            val truc = withContext(Dispatchers.IO){
-                // Job (API; BD)
-                return@withContext 1
-            }
-            onSuccess(truc)
+            repository.getCharacterDetails(id)?.run(onSuccess)
         }
     }
 

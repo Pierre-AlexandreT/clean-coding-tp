@@ -11,7 +11,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 
-
 private class EpisodeRepositoryImpl(
     private val api: EpisodeApi,
     private val dao: EpisodeDao
@@ -46,6 +45,7 @@ private class EpisodeRepositoryImpl(
         }
     }
 
+    // Unwrap a response to get information and result
     private fun Response<PaginatedResult<Episode>>.unwrap(): Pair<PaginatedResult.Information, List<Episode>> {
         check(this.isSuccessful) { "Response is not a success: code = ${this.code()}" }
         val paginatedResult =
@@ -56,6 +56,9 @@ private class EpisodeRepositoryImpl(
 
 interface EpisodeRepository {
 
+    /**
+     * Synchronize all episode between database and api, then return filtered list
+     */
     suspend fun getAllEpisode(filterId: List<Int>): List<Episode>
 
     companion object {

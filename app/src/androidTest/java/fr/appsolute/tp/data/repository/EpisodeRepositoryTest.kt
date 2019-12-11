@@ -5,7 +5,6 @@ import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
 import fr.appsolute.tp.data.database.DatabaseManager
 import fr.appsolute.tp.data.database.RickAndMortyDatabase
-import fr.appsolute.tp.test.blockingValue
 import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

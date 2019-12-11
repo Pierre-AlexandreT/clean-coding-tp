@@ -13,6 +13,9 @@ class EpisodeViewModel(
     private val repository: EpisodeRepository
 ) : ViewModel() {
 
+    /**
+     * Return a list of episode from a list of episode url
+     */
     fun getEpisodes(urls: List<String>, block: OnSuccess<List<Episode>>) {
         viewModelScope.launch {
             val idList = withContext(Dispatchers.Default) {

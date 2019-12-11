@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface EpisodeApi {
-    
+
     @GET(GET_ALL_EPISODE_PATH)
     suspend fun getAllEpisode(
         @Query("page") page: Int

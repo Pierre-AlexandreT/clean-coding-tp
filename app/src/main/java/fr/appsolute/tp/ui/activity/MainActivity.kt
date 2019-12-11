@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
      */
     private fun initToolBar() {
         setSupportActionBar(main_tool_bar)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+        main_tool_bar.setNavigationOnClickListener { onNavigateUp() }
     }
 
 }

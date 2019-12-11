@@ -21,7 +21,7 @@ interface DatabaseManager {
         var override: DatabaseManager? = null
 
         fun getInstance(app: RickAndMortyApplication? = null): DatabaseManager {
-            return override ?: databaseManager ?: synchronized(this){
+            return override ?: databaseManager ?: synchronized(this) {
                 DatabaseManagerImpl(
                     Room.databaseBuilder(
                         app ?: throw IllegalStateException("No Application"),
