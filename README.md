@@ -158,19 +158,7 @@ Package _fr.appsolute.tp.ui.widget.holder_
 The `CharacterViewHolder` is a separate class which extend `RecyclerView.ViewHolder`. We separate the calls from the adapter because maybe we can reuse it later.  
 
 The companion object of the ViewHolder is a Factory the constructor of this class is private.  
-
-## To Do 
-
-- Fork this project.
-- Try to fetch the details of character in the next fragment. There is no design guidelines for now but try to follow `Material Design`. You will have to : 
-    - [ ] Create the call to the api 
-    - [ ] Make the a new method in the API
-    - [ ] Create a a method in the repository.
-    - [ ] Create the method in the ViewModel
-    - [ ] Bind the UI
-    - [ ] Make the fragment UI
-- **If you have time**, try to make all unit test needed
-- **If you have time**, try to build a material theme. All the documentation is available on Material Design (Section **More**) 
+ 
 ## More
 
 - [Rick and Morty API](https://rickandmortyapi.com/documentation)
