@@ -23,7 +23,7 @@ data class Character(
      * Define what is a place
      */
     data class Place(
-        @SerializedName("name") val name: String,
+        @SerializedName("name") val name: String = "Toto",
         @SerializedName("url") val url: String
     )
 }

@@ -5,7 +5,7 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
 
-fun <T> LiveData<T>.getBlockingValue(timeOut: Int = 2): T? {
+fun <T> LiveData<T>.blockingValue(timeOut: Int = 2): T? {
     var value: T? = null
     val latch = CountDownLatch(1)
     observeForever {
