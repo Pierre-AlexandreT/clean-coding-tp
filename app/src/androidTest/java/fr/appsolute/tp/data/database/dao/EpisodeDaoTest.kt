@@ -5,6 +5,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import fr.appsolute.tp.data.database.RickAndMortyDatabase
 import fr.appsolute.tp.data.model.Episode
 import kotlinx.coroutines.runBlocking
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.BeforeClass
@@ -29,6 +30,11 @@ class EpisodeDaoTest {
     @Before
     fun setUp() {
         dao = database.episodeDao
+    }
+
+    @After
+    fun tearDown() {
+        database.clearAllTables()
     }
 
     @Test

@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import fr.appsolute.tp.data.model.Character
-import fr.appsolute.tp.data.networking.HttpClientManager
 import fr.appsolute.tp.data.networking.api.CharacterApi
-import fr.appsolute.tp.data.networking.createApi
 import fr.appsolute.tp.data.networking.datasource.CharacterDataSource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -67,12 +65,8 @@ interface CharacterRepository {
         /**
          * Singleton for the interface [CharacterRepository]
          */
-        val instance: CharacterRepository by lazy {
-            // Lazy means "When I need it" so here this block will be launch
-            // the first time you need the instance,
-            // then, the reference will be stored in the value `instance`
-            CharacterRepositoryImpl(HttpClientManager.instance.createApi())
-        }
+
+        fun newInstance(api: CharacterApi): CharacterRepository = CharacterRepositoryImpl(api)
     }
 
 

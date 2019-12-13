@@ -1,12 +1,9 @@
 package fr.appsolute.tp.data.repository
 
-import fr.appsolute.tp.data.database.DatabaseManager
 import fr.appsolute.tp.data.database.dao.EpisodeDao
 import fr.appsolute.tp.data.model.Episode
 import fr.appsolute.tp.data.model.PaginatedResult
-import fr.appsolute.tp.data.networking.HttpClientManager
 import fr.appsolute.tp.data.networking.api.EpisodeApi
-import fr.appsolute.tp.data.networking.createApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
@@ -65,16 +62,9 @@ interface EpisodeRepository {
         /**
          * Singleton for the interface [EpisodeRepository]
          */
-        val instance: EpisodeRepository by lazy {
-            // Lazy means "When I need it" so here this block will be launch
-            // the first time you need the instance,
-            // then, the reference will be stored in the value `instance`
-            EpisodeRepositoryImpl(
-                HttpClientManager.instance.createApi(),
-                DatabaseManager.getInstance().database.episodeDao
-            )
-        }
 
+        fun newInstance(api: EpisodeApi, dao: EpisodeDao): EpisodeRepository =
+            EpisodeRepositoryImpl(api, dao)
     }
 
 }

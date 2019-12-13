@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import fr.appsolute.tp.R
@@ -17,18 +15,12 @@ import fr.appsolute.tp.ui.adapter.CharacterAdapter
 import fr.appsolute.tp.ui.viewmodel.CharacterViewModel
 import fr.appsolute.tp.ui.widget.holder.OnCharacterClickListener
 import kotlinx.android.synthetic.main.fragment_character_list.view.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharacterListFragment : Fragment(), OnCharacterClickListener {
 
-    private lateinit var characterViewModel: CharacterViewModel
+    private val characterViewModel: CharacterViewModel by viewModel()
     private lateinit var characterAdapter: CharacterAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        activity?.run {
-            characterViewModel = ViewModelProvider(this, CharacterViewModel).get()
-        } ?: throw IllegalStateException("Invalid Activity")
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

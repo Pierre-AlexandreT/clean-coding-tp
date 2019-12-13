@@ -34,6 +34,7 @@ class EpisodeAdapter : RecyclerView.Adapter<EpisodeViewHolder>() {
      * Define how decorate an item
      */
     class OffsetDecoration : RecyclerView.ItemDecoration() {
+
         override fun getItemOffsets(
             outRect: Rect,
             view: View,

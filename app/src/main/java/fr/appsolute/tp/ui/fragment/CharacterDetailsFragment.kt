@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import com.bumptech.glide.Glide
 import fr.appsolute.tp.R
 import fr.appsolute.tp.data.model.Character
@@ -15,20 +13,18 @@ import fr.appsolute.tp.ui.adapter.EpisodeAdapter
 import fr.appsolute.tp.ui.viewmodel.CharacterViewModel
 import fr.appsolute.tp.ui.viewmodel.EpisodeViewModel
 import kotlinx.android.synthetic.main.fragment_character_details.view.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.KoinComponent
 
-class CharacterDetailsFragment : Fragment() {
+class CharacterDetailsFragment : Fragment(), KoinComponent {
 
-    private lateinit var characterViewModel: CharacterViewModel
-    private lateinit var episodeViewModel: EpisodeViewModel
+    private val characterViewModel: CharacterViewModel by viewModel()
+    private val episodeViewModel: EpisodeViewModel by viewModel()
     private lateinit var episodeAdapter: EpisodeAdapter
     private var characterId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activity?.run {
-            characterViewModel = ViewModelProvider(this, CharacterViewModel).get()
-            episodeViewModel = ViewModelProvider(this, EpisodeViewModel).get()
-        } ?: throw IllegalStateException("Invalid Activity")
         characterId =
             arguments?.getInt(ARG_CHARACTER_ID_KEY) ?: throw IllegalStateException("No ID found")
     }
@@ -71,8 +67,8 @@ class CharacterDetailsFragment : Fragment() {
         }
     }
 
-    private fun loadEpisodes(it: Character) {
-        episodeViewModel.getEpisodes(it.episode) {
+    private fun loadEpisodes(character: Character) {
+        episodeViewModel.getEpisodes(character.episode) {
             episodeAdapter.submitList(it)
         }
     }

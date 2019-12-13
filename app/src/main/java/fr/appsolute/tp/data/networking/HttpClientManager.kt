@@ -50,6 +50,7 @@ interface HttpClientManager {
          */
         val instance: HttpClientManager = HttpClientManagerImpl
 
+        fun create(): HttpClientManager = HttpClientManagerImpl
     }
 
 }
