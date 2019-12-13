@@ -5,11 +5,10 @@ import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
 import fr.appsolute.tp.data.database.DatabaseManager
 import fr.appsolute.tp.data.database.RickAndMortyDatabase
+import fr.appsolute.tp.data.networking.HttpClientManager
+import fr.appsolute.tp.data.networking.createApi
 import junit.framework.Assert.assertEquals
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.ObsoleteCoroutinesApi
-import kotlinx.coroutines.newSingleThreadContext
+import kotlinx.coroutines.*
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
@@ -27,7 +26,10 @@ class EpisodeRepositoryTest {
     @Before
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
-        repository = EpisodeRepository.instance
+        repository = EpisodeRepository.newInstance(
+            HttpClientManager.create().createApi(),
+            databaseManager.database.episodeDao
+        )
     }
 
     @After
@@ -38,20 +40,24 @@ class EpisodeRepositoryTest {
 
     @Test
     fun getAllEpisode() = runBlockingTest {
-        repository.getAllEpisode(List(31) { it + 1 }).run {
-            assertEquals("Size of the list must be 31", 31, this.size)
+        runBlocking {
+            repository.getAllEpisode(List(31) { it + 1 }).run {
+                assertEquals("Size of the list must be 31", 31, this.size)
+            }
+            val totalList = databaseManager.database.episodeDao.selectAll()
+            assertEquals("Size of total list in database must be 31", 31, totalList.size)
         }
-        val totalList = databaseManager.database.episodeDao.selectAll()
-        assertEquals("Size of total list in database must be 31", 31, totalList.size)
     }
 
     @Test
     fun getAllEpisodeFor5Episodes() = runBlockingTest {
-        repository.getAllEpisode(List(5) { it + 1 }).run {
-            assertEquals("Size of the list must be 5", 5, this.size)
+        runBlocking {
+            repository.getAllEpisode(List(5) { it + 1 }).run {
+                assertEquals("Size of the list must be 5", 5, this.size)
+            }
+            val totalList = databaseManager.database.episodeDao.selectAll()
+            assertEquals("Size of total list in database must be 31", 31, totalList.size)
         }
-        val totalList = databaseManager.database.episodeDao.selectAll()
-        assertEquals("Size of total list in database must be 31", 31, totalList.size)
     }
 
 

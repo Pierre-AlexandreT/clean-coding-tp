@@ -13,7 +13,7 @@ class HttpClientManagerTest {
 
     @Before
     fun setUp() {
-        instance = HttpClientManager.instance
+        instance = HttpClientManager.create()
     }
 
     @Test

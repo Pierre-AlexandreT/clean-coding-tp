@@ -67,7 +67,7 @@ class CharacterDataSourceTest {
     @Before
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
-        api = HttpClientManager.instance.createApi()
+        api = HttpClientManager.create().createApi()
     }
 
     @After

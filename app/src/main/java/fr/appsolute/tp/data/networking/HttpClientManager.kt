@@ -45,11 +45,6 @@ interface HttpClientManager {
     val retrofit: Retrofit
 
     companion object Instance {
-        /**
-         * Singleton for the interface
-         */
-        val instance: HttpClientManager = HttpClientManagerImpl
-
         fun create(): HttpClientManager = HttpClientManagerImpl
     }
 

@@ -71,7 +71,7 @@ class CharacterApiTest {
 
     @Before
     fun setUp() {
-        instance = HttpClientManager.instance
+        instance = HttpClientManager.create()
         api = instance.createApi()
     }
 

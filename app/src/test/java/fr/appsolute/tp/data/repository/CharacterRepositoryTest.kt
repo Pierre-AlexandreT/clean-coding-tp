@@ -2,6 +2,8 @@ package fr.appsolute.tp.data.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import fr.appsolute.tp.data.model.Character
+import fr.appsolute.tp.data.networking.HttpClientManager
+import fr.appsolute.tp.data.networking.createApi
 import fr.appsolute.tp.test.getBlockingValue
 import kotlinx.coroutines.*
 import kotlinx.coroutines.test.resetMain
@@ -74,7 +76,7 @@ class CharacterRepositoryTest {
     @Before
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
-        repository = CharacterRepository.instance
+        repository = CharacterRepository.newInstance(HttpClientManager.create().createApi())
     }
 
     @After

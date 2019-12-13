@@ -44,7 +44,7 @@ class EpisodeApiTest {
 
     @Before
     fun setUp() {
-        api = HttpClientManager.instance.createApi()
+        api = HttpClientManager.create().createApi()
     }
 
     @Test
